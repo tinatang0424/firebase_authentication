@@ -35,12 +35,10 @@ class PasswordActivity : AppCompatActivity() {
             val newpw_str = newpw_edt.text.toString()
             val checkpw_str = checkpw_edt.text.toString()
             if(TextUtils.isEmpty(newpw_str)) {
-                email_edt.setError("請輸入密碼")
-                return@setOnClickListener
+                Toast.makeText(this@PasswordActivity, "請輸入新密碼", Toast.LENGTH_SHORT).show()
             }
             else if(TextUtils.isEmpty(checkpw_str)) {
-                password_edt.setError("請再輸入一次密碼")
-                return@setOnClickListener
+                Toast.makeText(this@PasswordActivity, "請輸入驗證密碼", Toast.LENGTH_SHORT).show()
             }
             else if(newpw_str.length<6||checkpw_str.length<6) {
                 Toast.makeText(this@PasswordActivity,"密碼長度需大於5", Toast.LENGTH_SHORT).show()
@@ -64,10 +62,14 @@ class PasswordActivity : AppCompatActivity() {
                                 startActivity(Intent(this@PasswordActivity,MainActivity::class.java))
                                 finish()
                             }
+                            else {
+                                Log.w("error reason ",task.exception)
+                                Toast.makeText(this@PasswordActivity,"修改失敗，請再試一次!", Toast.LENGTH_LONG).show()
+                            }
                         }
                 }
                 else {
-                    Toast.makeText(this@PasswordActivity,"修改密碼失敗，請重新輸入驗證密碼!", Toast.LENGTH_LONG).show()
+                    Toast.makeText(this@PasswordActivity,"密碼不一致，請重新輸入驗證密碼", Toast.LENGTH_SHORT).show()
                 }
             }
         }

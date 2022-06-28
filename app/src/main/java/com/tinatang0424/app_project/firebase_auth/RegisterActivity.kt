@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
+import android.util.Log
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
@@ -59,8 +60,8 @@ class RegisterActivity : AppCompatActivity() {
                             startActivity(Intent(this@RegisterActivity, LoginActivity::class.java))
                             finish()
                         } else {
-                            Toast.makeText(this@RegisterActivity, "註冊失敗，請再試一次!", Toast.LENGTH_LONG)
-                                .show()
+                            Log.w("error reason ",it.exception)
+                            Toast.makeText(this@RegisterActivity, "註冊失敗，請再試一次!", Toast.LENGTH_LONG).show()
                         }
                     }
             }
