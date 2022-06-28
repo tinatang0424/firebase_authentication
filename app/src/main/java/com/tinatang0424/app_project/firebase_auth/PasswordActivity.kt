@@ -32,16 +32,21 @@ class PasswordActivity : AppCompatActivity() {
 
     private fun changepw() {
         submit_btn.setOnClickListener {
-            if(TextUtils.isEmpty(newpw_edt.text.toString())) {
+            val newpw_str = newpw_edt.text.toString()
+            val checkpw_str = checkpw_edt.text.toString()
+            if(TextUtils.isEmpty(newpw_str)) {
                 email_edt.setError("請輸入密碼")
                 return@setOnClickListener
             }
-            else if(TextUtils.isEmpty(checkpw_edt.text.toString())) {
+            else if(TextUtils.isEmpty(checkpw_str)) {
                 password_edt.setError("請再輸入一次密碼")
                 return@setOnClickListener
             }
+            else if(newpw_str.length<6||checkpw_str.length<6) {
+                Toast.makeText(this@PasswordActivity,"密碼長度需大於5", Toast.LENGTH_SHORT).show()
+            }
             else {
-                if(newpw_edt.text.toString()==checkpw_edt.text.toString()) {
+                if(newpw_str==checkpw_str) {
                     //可以改密碼
                     val currentuser = auth.currentUser
                     val newPassword = newpw_edt.text.toString()
