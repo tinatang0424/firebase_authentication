@@ -59,6 +59,7 @@ class PasswordActivity : AppCompatActivity() {
 
                                 Toast.makeText(this@PasswordActivity,"成功修改密碼!", Toast.LENGTH_LONG).show()
 
+                                auth.signOut()
                                 startActivity(Intent(this@PasswordActivity,LoginActivity::class.java))
                                 finish()
                             }
